@@ -9,6 +9,7 @@ module.exports = function(UserDatabase)
     let PersonName;
     let PersonNameError;
 
+    let counter = 0;
 
     let userArray = [];
 
