@@ -38,12 +38,8 @@ app.post("/greet", function(req, res)
     // use the inbound data
     greetUser.setname(userPerson);
     greetUser.set_language(languageChoice);
-
-    console.log("Name",greetUser.getFormatedName());
-    console.log("Language",greetUser.get_language());
-
     // send response back to the user using res.render
-    console.log("Greetings", greetUser.doGreet());
+ 
     let greetHuman = {
         person : greetUser.doGreet()
     }
@@ -52,9 +48,9 @@ app.post("/greet", function(req, res)
 });
 
 app.get("/greeted", function(req,res){
+    greetUser.getGreetedUsers();
 
-
-
+    console.log("User",greetUser.getGreetedUsers());
 });
 
 app.get("/counter/:username", function(req,res){

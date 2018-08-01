@@ -7,6 +7,10 @@ module.exports = function(UserDatabase)
     var language= '';
     var namesGreeted = {};
     let PersonName;
+    let PersonNameError;
+
+
+    let userArray = [];
 
     
     function setName(greetName){
@@ -29,17 +33,52 @@ module.exports = function(UserDatabase)
     function CapitilizeName() 
     {
         let name = Name_to_greet.toLowerCase();
-        PersonName = name.replace(/^.{1}/g, name[0].toUpperCase());
-        
-        return PersonName ;
+            PersonName = name.replace(/^.{1}/g, name[0].toUpperCase());
+
+        // if((Name_to_greet === "" || Name_to_greet === undefined))
+        // {
+        //     PersonNameError = "Oops you have to Enter a Name & Choose a Language!";
+        //     return PersonNameError;
+
+        // }
+        // else{
+            
+        // }
+      
     }
     
 
     function greetUser()
     {
-        if(language === "Isixhosa"){return "Molo, "+ PersonName;}
-        else if(language === "Afrikaans"){return "Hallo, "+ PersonName;}
-        else if(language ==="English"){return "Molo, "+ PersonName;}
+        
+            let UserObject = {
+                User : PersonName,
+                lang: language
+            }
+            if ( language === undefined || Name_to_greet === undefined){
+                PersonNameError = "Oops you have to Enter a Name & Choose a Language!";
+                return PersonNameError;}
+            else if(language === "Isixhosa" && Name_to_greet !== undefined){
+                let name = Name_to_greet.toLowerCase();
+                PersonName = name.replace(/^.{1}/g, name[0].toUpperCase());
+                return "Molo, "+ PersonName;}
+            else if(language === "Afrikaans" && Name_to_greet !== undefined){
+                let name = Name_to_greet.toLowerCase();
+                PersonName = name.replace(/^.{1}/g, name[0].toUpperCase());
+                return "Hallo, "+ PersonName;}
+            else if(language ==="English" && Name_to_greet !== undefined){
+                let name = Name_to_greet.toLowerCase();
+                PersonName = name.replace(/^.{1}/g, name[0].toUpperCase());
+                return "Molo, "+ PersonName;}
+        
+          
+         
+
+         else if ( language !== undefined && Name_to_greet === undefined){
+            PersonNameError = "Oops you have to Enter a Name & Choose a Language!";
+            return PersonNameError;
+ }
+        userArray.unshift(UserObject);
     }
 
     //Below are Getter functions
@@ -51,6 +90,8 @@ module.exports = function(UserDatabase)
     function getNameMap(){return namesGreeted;}
 
     function updateNameMap(){return namesGreeted ={};}
+
+    function getUserList () {return userArray;}
 
     function getCounter(){return Object.keys(namesGreeted).length;}
 
@@ -66,7 +107,8 @@ module.exports = function(UserDatabase)
 
         doGreet : greetUser,
         counter : getCounter,
-        updateNameList : updateNameMap
+        updateNameList : updateNameMap,
+        getGreetedUsers: getUserList
     }
 
 }
