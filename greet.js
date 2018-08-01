@@ -6,6 +6,7 @@ module.exports = function(UserDatabase)
     var Name_to_greet = '';
     var language= '';
     var namesGreeted = {};
+    let PersonName;
 
     
     function setName(greetName){
@@ -25,12 +26,20 @@ module.exports = function(UserDatabase)
         }
 
     }
+    function CapitilizeName() 
+    {
+        let name = Name_to_greet.toLowerCase();
+        PersonName = name.replace(/^.{1}/g, name[0].toUpperCase());
+        
+        return PersonName ;
+    }
+    
 
     function greetUser()
     {
-        if(language === "Isixhosa"){return "Molo, "+Name_to_greet;}
-        else if(language === "Afrikaans"){return "Hallo, "+Name_to_greet;}
-        else if(language ==="English"){return "Molo, "+Name_to_greet;}
+        if(language === "Isixhosa"){return "Molo, "+ PersonName;}
+        else if(language === "Afrikaans"){return "Hallo, "+ PersonName;}
+        else if(language ==="English"){return "Molo, "+ PersonName;}
     }
 
     //Below are Getter functions
@@ -51,6 +60,7 @@ module.exports = function(UserDatabase)
         checkList: checkUserStoredList,
 
         get_name : getNameToGreet,
+        getFormatedName: CapitilizeName,
         get_language : getLanguageChoice,
         get_NameList : getNameMap,
 

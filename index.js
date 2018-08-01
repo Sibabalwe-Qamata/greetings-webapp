@@ -29,12 +29,26 @@ app.get("/", function(req, res){
 
 
 //This Route should accept the username as part of the url.
-app.post("/greetings/:user", function(req, res)
+app.post("/greet", function(req, res)
 {
+    // get inbound parameters - from the url params or the **form** or both
     let userPerson = req.body.user;
     let languageChoice = req.body.language;
 
+    // use the inbound data
+    greetUser.setname(userPerson);
+    greetUser.set_language(languageChoice);
 
+    console.log("Name",greetUser.getFormatedName());
+    console.log("Language",greetUser.get_language());
+
+    // send response back to the user using res.render
+    console.log("Greetings", greetUser.doGreet());
+    let greetHuman = {
+        person : greetUser.doGreet()
+    }
+
+    res.render("home", {greetHuman});
 });
 
 app.get("/greeted", function(req,res){
