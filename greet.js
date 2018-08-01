@@ -51,35 +51,46 @@ module.exports = function(UserDatabase)
     function greetUser()
     {
         
-            let UserObject = {
-                User : PersonName,
-                lang: language
-            }
+            
             if ( language === undefined || Name_to_greet === undefined){
                 PersonNameError = "Oops you have to Enter a Name & Choose a Language!";
                 return PersonNameError;}
             else if(language === "Isixhosa" && Name_to_greet !== undefined){
+                let UserObject = {
+                    User : PersonName,
+                    lang: language
+                }
                 let name = Name_to_greet.toLowerCase();
                 PersonName = name.replace(/^.{1}/g, name[0].toUpperCase());
                 return "Molo, "+ PersonName;}
             else if(language === "Afrikaans" && Name_to_greet !== undefined){
+                let UserObject = {
+                    User : PersonName,
+                    lang: language
+                }
                 let name = Name_to_greet.toLowerCase();
                 PersonName = name.replace(/^.{1}/g, name[0].toUpperCase());
                 return "Hallo, "+ PersonName;}
             else if(language ==="English" && Name_to_greet !== undefined){
+                let UserObject = {
+                    User : PersonName,
+                    lang: language
+                }
                 let name = Name_to_greet.toLowerCase();
                 PersonName = name.replace(/^.{1}/g, name[0].toUpperCase());
                 return "Molo, "+ PersonName;}
-        
-          
-         
 
          else if ( language !== undefined && Name_to_greet === undefined){
+            let UserObject = {
+                User : PersonName,
+                lang: language
+            }
             PersonNameError = "Oops you have to Enter a Name & Choose a Language!";
-            return PersonNameError;
+            return PersonNameError;}
+            userArray.unshift(UserObject);
  }
-        userArray.unshift(UserObject);
-    }
+        
+    
 
     //Below are Getter functions
 

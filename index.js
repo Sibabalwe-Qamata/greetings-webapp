@@ -50,7 +50,13 @@ app.post("/greet", function(req, res)
 app.get("/greeted", function(req,res){
     greetUser.getGreetedUsers();
 
-    console.log("User",greetUser.getGreetedUsers());
+    console.log(greetUser.getGreetedUsers());
+
+    let greetedPeople = {
+        people : greetUser.getGreetedUsers()
+    }
+    res.render("records", {greetedPeople});
+
 });
 
 app.get("/counter/:username", function(req,res){
