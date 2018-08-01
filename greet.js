@@ -1,4 +1,6 @@
-function greeting(UserDatabase) 
+"use scrict";
+
+module.exports = function(UserDatabase) 
 {
 
     var Name_to_greet = '';

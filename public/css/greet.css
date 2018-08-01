@@ -74,3 +74,11 @@ body {
 span{
     padding-bottom: 5%;
 }
+
+.box {
+    padding: 0.75em;
+    border-radius : 0.5em;
+    border : 1px solid #ddd;
+    height: auto;
+    margin-bottom: 1em;
+  }
