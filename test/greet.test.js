@@ -51,13 +51,7 @@ describe('The Greet function', function()
  
        greetings.setname("Siba");
        greetings.set_language("English");
- 
-       greetings.setname("Siba");
-       greetings.set_language("Isixhosa");
- 
-       greetings.setname("Siba");
-       greetings.set_language("Afrikaans");
- 
+        console.log(greetings.counter());
        assert.equal(greetings.counter(),1);
       
       });

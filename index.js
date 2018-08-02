@@ -24,7 +24,8 @@ app.use(bodyParser.json())
 
 
 app.get("/", function(req, res){
-  res.render("home");
+    let greetedPeople = greetUser.getGreetedUsersObj();
+  res.render("home", {greetedPeople});
 });
 
 
@@ -39,6 +40,7 @@ app.post("/greet", function(req, res)
     greetUser.setname(userPerson);
     greetUser.set_language(languageChoice);
     // send response back to the user using res.render
+    
  
     let greetHuman = {
         person : greetUser.doGreet()
@@ -48,13 +50,11 @@ app.post("/greet", function(req, res)
 });
 
 app.get("/greeted", function(req,res){
-    greetUser.getGreetedUsers();
+  
+    let greetedPeople = greetUser.getGreetedUsersObj();
+    console.log("UserList Object", greetedPeople);
+    console.log("UserList Array", greetUser.getUserArrayList());
 
-    console.log(greetUser.getGreetedUsers());
-
-    let greetedPeople = {
-        people : greetUser.getGreetedUsers()
-    }
     res.render("records", {greetedPeople});
 
 });

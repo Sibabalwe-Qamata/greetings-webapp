@@ -13,6 +13,9 @@ module.exports = function(UserDatabase)
 
     let userArray = [];
 
+  
+    let UserObject = {};
+
     
     function setName(greetName){
         if(greetName !== " "){Name_to_greet = greetName;}
@@ -35,60 +38,59 @@ module.exports = function(UserDatabase)
     {
         let name = Name_to_greet.toLowerCase();
             PersonName = name.replace(/^.{1}/g, name[0].toUpperCase());
-
-        // if((Name_to_greet === "" || Name_to_greet === undefined))
-        // {
-        //     PersonNameError = "Oops you have to Enter a Name & Choose a Language!";
-        //     return PersonNameError;
-
-        // }
-        // else{
-            
-        // }
       
     }
     
 
     function greetUser()
     {
-        
-            
-            if ( language === undefined || Name_to_greet === undefined){
-                PersonNameError = "Oops you have to Enter a Name & Choose a Language!";
-                return PersonNameError;}
-            else if(language === "Isixhosa" && Name_to_greet !== undefined){
-                let UserObject = {
-                    User : PersonName,
-                    lang: language
-                }
-                let name = Name_to_greet.toLowerCase();
-                PersonName = name.replace(/^.{1}/g, name[0].toUpperCase());
-                return "Molo, "+ PersonName;}
-            else if(language === "Afrikaans" && Name_to_greet !== undefined){
-                let UserObject = {
-                    User : PersonName,
-                    lang: language
-                }
-                let name = Name_to_greet.toLowerCase();
-                PersonName = name.replace(/^.{1}/g, name[0].toUpperCase());
-                return "Hallo, "+ PersonName;}
-            else if(language ==="English" && Name_to_greet !== undefined){
-                let UserObject = {
-                    User : PersonName,
-                    lang: language
-                }
-                let name = Name_to_greet.toLowerCase();
-                PersonName = name.replace(/^.{1}/g, name[0].toUpperCase());
-                return "Molo, "+ PersonName;}
+        // if (numPlate !== " ") {
+        //     numberPlateDisplay = numPlate;
+        // }
 
-         else if ( language !== undefined && Name_to_greet === undefined){
-            let UserObject = {
-                User : PersonName,
-                lang: language
+        // if (plateStored[numPlate] === undefined) 
+        // {
+        //     plateStored[numPlate] = 0;
+        // }
+
+            
+            if ( language === undefined || Name_to_greet === undefined)
+            {
+                PersonNameError = "Oops you have to Enter a Name & Choose a Language!";
+                return PersonNameError;
             }
-            PersonNameError = "Oops you have to Enter a Name & Choose a Language!";
-            return PersonNameError;}
-            userArray.unshift(UserObject);
+            else{
+                //UserObject.User= PersonName;
+                //UserObject.lang=language;
+
+                UserObject[PersonName]= 1;
+              
+                if(language === "Isixhosa" && Name_to_greet !== undefined){
+               
+                    let name = Name_to_greet.toLowerCase();
+                    PersonName = name.replace(/^.{1}/g, name[0].toUpperCase());
+                   
+                  
+                    
+                    return "Molo, "+ PersonName;}
+                else if(language === "Afrikaans" && Name_to_greet !== undefined){
+                    let name = Name_to_greet.toLowerCase();
+                    PersonName = name.replace(/^.{1}/g, name[0].toUpperCase());
+                 
+                  
+    
+                    return "Hallo, "+ PersonName;}
+                else if(language ==="English" && Name_to_greet !== undefined){
+                    let name = Name_to_greet.toLowerCase();
+                    PersonName = name.replace(/^.{1}/g, name[0].toUpperCase());
+                
+                   
+                    return "Hello, "+ PersonName;
+                }
+
+
+            }
+             
  }
         
     
@@ -103,9 +105,23 @@ module.exports = function(UserDatabase)
 
     function updateNameMap(){return namesGreeted ={};}
 
-    function getUserList () {return userArray;}
+    function getUserList () {return Object.keys(UserObject);}
 
-    function getCounter(){return Object.keys(namesGreeted).length;}
+    function getUserArray () {return UserObject;}
+
+    function getCounter(){return Object.keys(UserObject).length;}
+
+    function getNameList() {
+        if (Name_to_greet === "" || language === undefined) {
+            return userArray;
+        } else {
+
+            return userArray.filter(current => current.Type === Name_to_greet);
+        }
+
+    }
+
+
 
     return {
         setname: setName,
@@ -120,7 +136,10 @@ module.exports = function(UserDatabase)
         doGreet : greetUser,
         counter : getCounter,
         updateNameList : updateNameMap,
-        getGreetedUsers: getUserList
+        getGreetedUsersObj: getUserList,
+        getUserArrayList: getUserArray,
+
+        returnUsers: getNameList
     }
 
 }
