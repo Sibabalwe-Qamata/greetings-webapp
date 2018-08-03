@@ -60,9 +60,6 @@ module.exports = function(UserDatabase)
                 return PersonNameError;
             }
             else{
-                //UserObject.User= PersonName;
-                //UserObject.lang=language;
-
                 UserObject[PersonName]= 1;
               
                 if(language === "Isixhosa" && Name_to_greet !== undefined){
