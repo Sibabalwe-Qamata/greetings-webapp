@@ -23,10 +23,10 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 
-app.get("/", function(req, res){
+app.get('/', function(req, res){
     let greetedPeople = greetUser.getGreetedUsersObj();
 
-  res.render("home", {Counter: greetUser.counter()});
+  res.render('home', {Counter: greetUser.counter()});
 });
 
 
