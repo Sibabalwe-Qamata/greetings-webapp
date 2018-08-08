@@ -26,11 +26,7 @@ app.use(bodyParser.json())
 app.get("/", function(req, res){
     let greetedPeople = greetUser.getGreetedUsersObj();
 
-    let greetHuman = {
-      
-        Counter: greetUser.counter()
-    }
-  res.render("home", {greetHuman});
+  res.render("home", {Counter: greetUser.counter()});
 });
 
 
