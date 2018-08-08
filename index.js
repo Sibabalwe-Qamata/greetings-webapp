@@ -10,7 +10,9 @@ app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
 //Static Resource
-app.use(express.static('public'));
+//app.use(express.static('public'));
+
+app.use(express.static(__dirname + '/public'));
 
 
 //Body parser ...
