@@ -24,6 +24,25 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 app.use(bodyParser.json())
 
+//Database Connection Set-Up
+const pg = require("pg");
+const Pool = pg.Pool;
+
+let useSSL = false;
+let local = process.env.LOCAL || false;
+
+if (process.env.DATABASE_URL && !local){
+    useSSL = true;
+}
+
+const connectionString = process.env.DATABASE_URL || 'postgresql://coder:pg123@localhost:5432/my_products';
+
+const pool = new Pool({
+    connectionString,
+    ssl : useSSL
+  });
+
+
 
 app.get('/', function(req, res){
     let greetedPeople = greetUser.getGreetedUsersObj();
