@@ -3,9 +3,9 @@
 module.exports = function(UserDatabase) 
 {
 
-    var Name_to_greet = '';
-    var language= '';
-    var namesGreeted = {};
+    let Name_to_greet = '';
+    let language= '';
+    let namesGreeted = {};
     let PersonName;
     let PersonNameError;
 
@@ -53,30 +53,23 @@ module.exports = function(UserDatabase)
                 return PersonNameError;
             }
             else{
-               // 
-               //UserObject['Users'] = new Array();
+        
                 if(language === "Isixhosa" && Name_to_greet !== undefined){
                
                     let name = Name_to_greet.toLowerCase();
                     PersonName = name.replace(/^.{1}/g, name[0].toUpperCase());
-                   
-                   
-                    //UserObject['Users'].push(PersonName);
-                    return "Molo, "+ PersonName;}
+                    return "Molo, "+ PersonName;
+                }
+
                 else if(language === "Afrikaans" && Name_to_greet !== undefined){
                     let name = Name_to_greet.toLowerCase();
                     PersonName = name.replace(/^.{1}/g, name[0].toUpperCase());
                  
-                    //UserObject['Users'].push(PersonName);
-                   // userArray.push(PersonName);
-    
                     return "Hallo, "+ PersonName;}
                 else if(language ==="English" && Name_to_greet !== undefined){
                     let name = Name_to_greet.toLowerCase();
                     PersonName = name.replace(/^.{1}/g, name[0].toUpperCase());
 
-                    //UserObject['Users'].push(PersonName);
-                    //userArray.push(PersonName);
                     return "Hello, "+ PersonName;
                 }
 
