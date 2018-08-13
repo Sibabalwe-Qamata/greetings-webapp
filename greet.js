@@ -45,8 +45,6 @@ module.exports = function(pool)
 
     function greetUser()
     {
-      
-            
             if ( language === undefined || Name_to_greet === undefined)
             {
                 PersonNameError = "Oops you have to Enter a Name & Choose a Language!";
