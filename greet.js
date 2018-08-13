@@ -22,9 +22,9 @@ module.exports = function(pool)
         if(greetName !== " "){Name_to_greet = greetName;}
     }
 
-   async function setLanguage(lang){language= lang;}
+   async function setLanguage(lang){   language= lang;  }
 
-    function checkUserStoredList(){
+   async function checkUserStoredList(){
         if(UserDatabase){ namesGreeted = UserDatabase;}
 
         if(Name_to_greet !==""){
@@ -35,14 +35,7 @@ module.exports = function(pool)
         }
 
     }
-    function CapitilizeName() 
-    {
-        let name = Name_to_greet.toLowerCase();
-            PersonName = name.replace(/^.{1}/g, name[0].toUpperCase());
-      
-    }
     
-
    async function greetUser()
     {
             if ( language === undefined || Name_to_greet === undefined)
@@ -97,7 +90,7 @@ module.exports = function(pool)
 
     function getCounter(){return userArray.length;}
 
-     async function getNameList() {
+    async function getNameList() {
         if (Name_to_greet === "" || language === undefined) {
             return userArray;
         } else {
