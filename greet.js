@@ -1,6 +1,6 @@
 "use scrict";
 
-module.exports = function(UserDatabase) 
+module.exports = function(pool) 
 {
 
     let Name_to_greet = '';

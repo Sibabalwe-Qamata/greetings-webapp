@@ -1,6 +1,6 @@
 //import the greet module that is in the current folder
 const Greet = require('./greet');
-const greetUser = Greet();
+
 
 let express = require('express');
 let app = express();
@@ -42,6 +42,9 @@ const pool = new Pool({
     ssl : useSSL
   });
 
+
+//Pass the pool string....
+const greetUser = Greet(pool);
 
 
 app.get('/', function(req, res){
