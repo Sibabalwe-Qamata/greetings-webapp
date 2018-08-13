@@ -17,12 +17,12 @@ module.exports = function(pool)
     let UserObject = {};
 
     
-    function setName(greetName){
+   async function setName(greetName){
         userArray.push(greetName);
         if(greetName !== " "){Name_to_greet = greetName;}
     }
 
-    function setLanguage(lang){language= lang;}
+   async function setLanguage(lang){language= lang;}
 
     function checkUserStoredList(){
         if(UserDatabase){ namesGreeted = UserDatabase;}
@@ -43,7 +43,7 @@ module.exports = function(pool)
     }
     
 
-    function greetUser()
+   async function greetUser()
     {
             if ( language === undefined || Name_to_greet === undefined)
             {
@@ -97,7 +97,7 @@ module.exports = function(pool)
 
     function getCounter(){return userArray.length;}
 
-    function getNameList() {
+     async function getNameList() {
         if (Name_to_greet === "" || language === undefined) {
             return userArray;
         } else {
