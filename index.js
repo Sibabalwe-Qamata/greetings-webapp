@@ -55,23 +55,22 @@ app.get('/', function(req, res){
 
 
 //This Route should accept the username as part of the url.
-app.post("/greet", function(req, res)
+app.post("/greet", async function(req, res)
 {
     // get inbound parameters - from the url params or the **form** or both
-    let userPerson = req.body.user;
-    let languageChoice = req.body.language;
-
-    // use the inbound data
-    greetUser.setname(userPerson);
-    greetUser.set_language(languageChoice);
-    // send response back to the user using res.render
-    
-
-    console.log("Counter:", greetUser.counter());
+    let {user, language} = req.body;
+    console.log(user)
+    console.log(language)
+    // add the user greeted to the database
+   let greetPerson =  await greetUser.greet(user, language);
+    // ask the database how many users has been greeted    
+    let counter = await greetUser.counter();
+   
+    console.log("Counter:", counter);
  
     let greetHuman = {
-        person : greetUser.doGreet(),
-        Counter: greetUser.counter()
+        person : greetPerson,
+        Counter: counter
     }
 
     res.render("home", {greetHuman});
