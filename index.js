@@ -72,22 +72,20 @@ app.post("/greet", async function(req, res)
         person : greetPerson,
         Counter: counter
     }
-
     res.render("home", {greetHuman});
 });
 
 app.get("/greeted", function(req,res){
   
     let greetedPeople = greetUser.getGreetedUsersObj();
-    console.log("UserList Arr", greetedPeople);
-    console.log("UserList Object", greetUser.getGreetedUsersObj());
+    // console.log("UserList Arr", greetedPeople);
+    // console.log("UserList Object", greetUser.getGreetedUsersObj());
 
     res.render("records", {greetedPeople});
 
 });
 
 app.get("/counter/:username", function(req,res){
-
 
 
 });
