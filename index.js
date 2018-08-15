@@ -65,7 +65,7 @@ app.post("/greet", async function(req, res)
     // ask the database how many users has been greeted    
     let counter = await greetUser.counter();
    
-    console.log("Counter from the DB:", counter);
+   // console.log("Counter from the DB:", counter);
  
     let greetHuman = {
         person : greetPerson,
@@ -80,7 +80,7 @@ app.get("/greeted", function(req,res){
 
     let dataDB = greetUser.returnUsers();
    
-    console.log(greetedPeople);
+    //console.log(greetedPeople);
     console.log("From the Database", dataDB);
     res.render("records", {greetedPeople});
 

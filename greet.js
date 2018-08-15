@@ -15,18 +15,6 @@ module.exports = function(pool)
 
   
     let UserObject = {};
-
-//    async function checkUserStoredList(){
-//         if(UserDatabase){ namesGreeted = UserDatabase;}
-
-//         if(Name_to_greet !==""){
-//             if(namesGreeted[Name_to_greet] === undefined)
-//             {
-//                 namesGreeted[Name_to_greet]=0;
-//             }
-//         }
-
-//     }
     
    async function greetUser(user, lang)
     {
