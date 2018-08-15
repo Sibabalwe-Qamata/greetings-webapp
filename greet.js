@@ -41,8 +41,7 @@ module.exports = function(pool)
                 let userCounter = userArray.length;
 
                 let data = [
-                    user.name,
-                    userCounter.counter
+                    user.name
                 ];
                 
                 if(lang === "Isixhosa" && user !== undefined){
@@ -63,7 +62,7 @@ module.exports = function(pool)
 
                     return "Hello, "+ PersonName;
                 }
-             return pool.query('insert into users (name, counter)  values ($1, $2)', data);
+             return pool.query('INSERT into USERS (name)  values ($1)', data);
             }
              
         }
@@ -74,8 +73,6 @@ module.exports = function(pool)
         UserObject = getUserArray();
         return UserObject;
     }
-
-    
 
     async function getCounter()
     {
