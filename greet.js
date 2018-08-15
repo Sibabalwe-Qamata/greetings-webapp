@@ -16,32 +16,17 @@ module.exports = function(pool)
   
     let UserObject = {};
 
-    
-   async function setName(greetName){
-       
+//    async function checkUserStoredList(){
+//         if(UserDatabase){ namesGreeted = UserDatabase;}
 
-        if(greetName !== " ")
-        {
-            Name_to_greet = greetName;
-            
-            let userCounter = userArray.length;
-            
-        }
-    }
+//         if(Name_to_greet !==""){
+//             if(namesGreeted[Name_to_greet] === undefined)
+//             {
+//                 namesGreeted[Name_to_greet]=0;
+//             }
+//         }
 
-   async function setLanguage(lang){   language= lang;  }
-
-   async function checkUserStoredList(){
-        if(UserDatabase){ namesGreeted = UserDatabase;}
-
-        if(Name_to_greet !==""){
-            if(namesGreeted[Name_to_greet] === undefined)
-            {
-                namesGreeted[Name_to_greet]=0;
-            }
-        }
-
-    }
+//     }
     
    async function greetUser(user, lang)
     {
@@ -54,6 +39,7 @@ module.exports = function(pool)
 
                 userArray.push(user);
                 let userCounter = userArray.length;
+
                 let data = [
                     user.name,
                     userCounter.counter
@@ -81,16 +67,6 @@ module.exports = function(pool)
             }
              
         }
-        
-    //Below are Getter functions
-
-    function getNameToGreet(){return Name_to_greet;}
-
-    function getLanguageChoice(){return language;}
-
-    function getNameMap(){return namesGreeted;}
-
-   
 
     function getUserArray () {return userArray;}
 
@@ -101,36 +77,30 @@ module.exports = function(pool)
 
     
 
-    function getCounter(){return userArray.length;}
-
-    async function getNameList() {
-        if (Name_to_greet === "" || language === undefined) {
-            return userArray;
-        } else {
-
-            return userArray.filter(current => current.Type === Name_to_greet);
-        }
+    async function getCounter()
+    {
+        return pool.query('SELECT COUNT(*) FROM users');
 
     }
 
+    async function allUsers(){
+        let users = await pool.query('SELECT * from users');
+        return users.rows;
+    }
+
+    async function getUserGreeted(name){
+        return pool.query('SELECT * FROM users WHERE name = $1', [name]);
+    }
 
 
     return {
-        setname: setName,
-        set_language: setLanguage,
-        checkList: checkUserStoredList,
-
-        get_name : getNameToGreet,
-     
-        get_language : getLanguageChoice,
-        get_NameList : getNameMap,
-
+       
         greet : greetUser,
         counter : getCounter,
         getGreetedUsersObj: getUserList,
         getUserArrayList: getUserArray,
 
-        returnUsers: getNameList
+        returnUsers: allUsers
     }
 
 }
