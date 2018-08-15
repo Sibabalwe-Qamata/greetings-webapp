@@ -1,0 +1,87 @@
+<div class="container">
+    <div class="row">
+        <div class="twelve columns">
+            <h1>Greeting</h1>
+        </div>
+    </div>
+    <hr>
+    <form class="" action="/greet" method="post">
+            <div class="row">
+                    <div class="twelve columns">
+                        <input name ="user"  id="name" onfocus="this.value=''" onkeyup="lettersOnly(this)"  placeholder="enter name here" class="text-name"
+                            pattern="[a-zA-Z]+" title="Please enter a name e.g 'Siba'">
+                    </div>
+            </div>
+            <div class="row">
+                <div class="four columns">
+                    <label class="">
+                        <input type="radio" name="language" class="EnglishTypeRadio" value="English">
+                        <span class="label-body">English</span>
+                    </label>
+                </div>
+
+
+                <div class="four columns">
+                    <label class="">
+                        <input type="radio" name="language" class="IsixhosaTypeRadio" value="Isixhosa">
+                        <span class="label-body">Isixhosa</span>
+                    </label>
+                </div>
+
+                <div class="four columns">
+                    <label class="">
+                        <input type="radio" name="language" class="AfrikaansTypeRadio" value="Afrikaans">
+                        <span class="label-body">Afrikaans</span>
+                    </label>
+                </div>
+            </div>
+      
+            <div class="row">
+                <div class="six columns">
+                    <button class="button reset button-primary">Reset </button>
+            </div>
+
+                <div class="six columns">
+                    <button class="button-primary button ">Greet </button>
+                </div>
+            
+
+            </div>
+            <div class="row">
+                <div class="twelve columns">
+                    <span class="writer">{{greetHuman.person}}</span>
+                </div>
+            </div>
+    </form>
+
+    <hr>
+     <div class="row">
+
+          <form action="/greeted" method="GET">
+            <button class="button-primary" type="submit" name="button">Show Users Greeted</button>
+        </form>
+    </div>
+    <hr>
+
+    <form  class="" action="/counter/:username" method="get">
+        <div class="row">
+            <div class="six columns counter">
+                <span class="counter">Counter:</span>
+            </div>
+            <div class="six columns counter">
+                <span class="counter">{{greetHuman.Counter}}</span>
+            </div>
+        </div>
+    </form>
+    <hr>
+    
+   
+
+    <!--div class="row">
+        <div class="twelve columns">
+            <footer>
+                <p>Proudly developed by Sibabalwe Qamata &copy; 2018</p>
+            </footer>
+        </div>
+    </div-->
+</div>

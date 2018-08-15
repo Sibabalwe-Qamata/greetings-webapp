@@ -1,0 +1,29 @@
+<div class="row">
+    <div class="twelve columns box">
+        <h2>
+                Users Greeted:
+        </h2>
+        <!---table>
+            <tr>
+                <th>User Greeted</th>
+            </tr>
+            <tr>
+                {{#each greetedPeople}}
+                     <td>{{this}}</td>
+                    {{/each}} 
+            </tr>
+        </table-->
+
+            <ul class="no-bullets">
+            {{#each greetedPeople}}
+                     <li>{{this}}</li>
+                    {{/each}} 
+            </ul>
+        
+    <hr>
+        <form action="/" method="GET">
+            <button class="button-primary" type="submit" name="button">Back</button>
+        </form>
+
+    </div>
+</div>
