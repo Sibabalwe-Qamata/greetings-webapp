@@ -59,8 +59,7 @@ app.post("/greet", async function(req, res)
 {
     // get inbound parameters - from the url params or the **form** or both
     let {user, language} = req.body;
-    console.log(user)
-    console.log(language)
+  
     // add the user greeted to the database
    let greetPerson =  await greetUser.greet(user, language);
     // ask the database how many users has been greeted    
@@ -78,9 +77,8 @@ app.post("/greet", async function(req, res)
 app.get("/greeted", function(req,res){
   
     let greetedPeople = greetUser.getGreetedUsersObj();
-    // console.log("UserList Arr", greetedPeople);
-    // console.log("UserList Object", greetUser.getGreetedUsersObj());
-
+   
+    console.log(greetedPeople);
     res.render("records", {greetedPeople});
 
 });

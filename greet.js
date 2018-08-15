@@ -95,7 +95,7 @@ module.exports = function(pool)
     function getUserArray () {return userArray;}
 
     function getUserList () {
-        UserObject['Users']= getUserArray();
+        UserObject = getUserArray();
         return UserObject;
     }
 

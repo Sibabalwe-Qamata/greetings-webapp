@@ -82,3 +82,8 @@ span{
     height: auto;
     margin-bottom: 1em;
   }
+
+  .no-bullets {
+    list-style-type: none;
+    text-align:center;
+}
