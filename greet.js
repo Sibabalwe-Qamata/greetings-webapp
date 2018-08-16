@@ -2,10 +2,6 @@
 
 module.exports = function(pool) 
 {
-
-    let Name_to_greet = '';
-    let language= '';
-    let namesGreeted = {};
     let PersonName;
     let PersonNameError;
 
@@ -23,35 +19,29 @@ module.exports = function(pool)
                 PersonNameError = "Oops you have to Enter a Name & Choose a Language!";
                 return PersonNameError;
             }
-            else{
-
+        
                 userArray.push(user);
                 let userCounter = userArray.length;
-
-                let data = [
-                    user.name
-                ];
+                let Usersname = user.toLowerCase();
+                PersonName = Usersname.replace(/^.{1}/g, Usersname[0].toUpperCase());
+                // the data to the Database ....
                 
-                if(lang === "Isixhosa" && user !== undefined){
-               
-                    let name = user.toLowerCase();
-                    PersonName = name.replace(/^.{1}/g, name[0].toUpperCase());
-                    return "Molo, "+ PersonName;
+                let checkUser =  await pool.query('SELECT id FROM users WHERE name=$1', [PersonName]);
+                if( checkUser.rowCount < 1 )
+                { 
+                    await pool.query('INSERT into USERS (name, counter) values ($1,0)', [PersonName]);
                 }
+                
+                await pool.query('UPDATE users SET counter = counter + 1 WHERE name=$1',[PersonName]);
+                  
 
-                else if(lang === "Afrikaans" && user !== undefined){
-                    let name = user.toLowerCase();
-                    PersonName = name.replace(/^.{1}/g, name[0].toUpperCase());
-                 
-                    return "Hallo, "+ PersonName;}
-                else if(lang ==="English" && user !== undefined){
-                    let name = user.toLowerCase();
-                    PersonName = name.replace(/^.{1}/g, name[0].toUpperCase());
+                
 
-                    return "Hello, "+ PersonName;
-                }
-             return pool.query('INSERT into USERS (name)  values ($1)', data);
-            }
+                if(lang === "Isixhosa" && user !== undefined){return "Molo, "+ PersonName;}
+
+                else if(lang === "Afrikaans" && user !== undefined){ return "Hallo, "+ PersonName; }
+
+                else if(lang ==="English" && user !== undefined){ return "Hello, "+ PersonName; }
              
         }
 
@@ -64,17 +54,20 @@ module.exports = function(pool)
 
     async function getCounter()
     {
-        return pool.query('SELECT COUNT(*) FROM users');
+        let result = await pool.query('SELECT id FROM users');
+        console.log(result.rowCount);
+        return result.rowCount;
 
     }
-
     async function allUsers(){
         let users = await pool.query('SELECT * from users');
+        //console.log(users);
         return users.rows;
     }
 
     async function getUserGreeted(name){
-        return pool.query('SELECT * FROM users WHERE name = $1', [name]);
+        let result = await pool.query('SELECT * FROM users WHERE name = $1', [name]);
+        return result.rowCount;
     }
 
 
@@ -85,7 +78,8 @@ module.exports = function(pool)
         getGreetedUsersObj: getUserList,
         getUserArrayList: getUserArray,
 
-        returnUsers: allUsers
+        returnUsers: allUsers,
+        returnGreetedUsers: getUserGreeted
     }
 
 }

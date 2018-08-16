@@ -1,5 +1,5 @@
 //import the greet module that is in the current folder
-const Greet = require('./greet');
+let Greet = require('./greet');
 
 
 let express = require('express');
@@ -47,10 +47,9 @@ const pool = new Pool({
 const greetUser = Greet(pool);
 
 
-app.get('/', function(req, res){
-    let greetedPeople = greetUser.getGreetedUsersObj();
-
-  res.render('home', {Counter: greetUser.counter()});
+app.get('/', async function(req, res){
+    let greetedPeople = await greetUser.counter();
+    res.render('home', {greetedPeople})
 });
 
 
@@ -65,16 +64,15 @@ app.post("/greet", async function(req, res)
     // ask the database how many users has been greeted    
     let counter = await greetUser.counter();
    
-   // console.log("Counter from the DB:", counter);
  
     let greetHuman = {
         person : greetPerson,
         Counter: counter
     }
-    res.render("home", {greetHuman});
+    res.render("home", greetHuman);
 });
 
-app.get("/greeted", function(req,res){
+app.get("/greeted", async function(req,res){
   
     let greetedPeople = greetUser.getGreetedUsersObj();
 
