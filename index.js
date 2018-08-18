@@ -74,13 +74,13 @@ app.post("/greet", async function(req, res)
 
 app.get("/greeted", async function(req,res){
   
-    let greetedPeople = greetUser.getGreetedUsersObj();
+    //let greetedPeople = greetUser.getGreetedUsersObj();
 
-    let dataDB = greetUser.returnUsers();
+    let greetedUsers= await greetUser.returnUsers();
    
     //console.log(greetedPeople);
-    console.log("From the Database", dataDB);
-    res.render("records", {greetedPeople});
+    console.log("From the Database", greetedUsers);
+    res.render("records", {greetedUsers});
 
 });
 

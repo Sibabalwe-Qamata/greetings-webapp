@@ -10,7 +10,7 @@ describe('The Greet function', function()
   
      it('It should Greet the user(Siphe) with the proper language and name (i.e Molo, Siphe)',
     function() {
-      var greetings = greetingPerson({});
+      var greetings = await greetingPerson({});
 
       greetings.setname("Siphe");
       greetings.set_language("Isixhosa");
@@ -21,11 +21,8 @@ describe('The Greet function', function()
 
      it('It should Greet the user(Siphelo) with the proper language and name (i.e  Hallo,Siphelo)',
     function() {
-      var greetings = greetingPerson({});
-
-      greetings.setname("Siphelo");
-      greetings.set_language("Afrikaans");
-      assert.equal(greetings.doGreet(),'Hallo, Siphelo');
+      let greetings =  greetingPerson({});
+      assert.equal(await greetings.greet("Siphelo","Afrikaans"),'Hallo, Siphelo');
      });
 
      it('It should Increment the counter, if Three users were greeted ',
