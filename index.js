@@ -58,7 +58,6 @@ app.get('/', async function (req, res) {
 });
 
 
-//This Route should accept the username as part of the url.
 app.post("/greet", async function (req, res) {
     try {
         // get inbound parameters - from the url params or the **form** or both
