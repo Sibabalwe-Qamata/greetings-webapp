@@ -6,64 +6,70 @@
     </div>
     <hr>
     <form class="" action="/greet" method="post">
-            <div class="row">
-                    <div class="twelve columns">
-                        <input name ="user"  id="name" onfocus="this.value=''" onkeyup="lettersOnly(this)"  placeholder="enter name here" class="text-name"
-                            pattern="[a-zA-Z]+" title="Please enter a name e.g 'Siba'">
-                    </div>
+        <div class="row">
+            <div class="twelve columns">
+                <input name="user" id="name" onfocus="this.value=''" onkeyup="lettersOnly(this)" placeholder="enter name here" class="text-name"
+                    pattern="[a-zA-Z]+" title="Please enter a name e.g 'Siba'">
             </div>
-            <div class="row">
-                <div class="four columns">
-                    <label class="">
-                        <input type="radio" name="language" class="EnglishTypeRadio" value="English">
-                        <span class="label-body">English</span>
-                    </label>
-                </div>
-
-
-                <div class="four columns">
-                    <label class="">
-                        <input type="radio" name="language" class="IsixhosaTypeRadio" value="Isixhosa">
-                        <span class="label-body">Isixhosa</span>
-                    </label>
-                </div>
-
-                <div class="four columns">
-                    <label class="">
-                        <input type="radio" name="language" class="AfrikaansTypeRadio" value="Afrikaans">
-                        <span class="label-body">Afrikaans</span>
-                    </label>
-                </div>
-            </div>
-      
-            <div class="row">
-                <div class="six columns">
-                    <button class="button reset button-primary">Reset </button>
+        </div>
+        <div class="row">
+            <div class="four columns">
+                <label class="">
+                    <input type="radio" name="language" class="EnglishTypeRadio" value="English">
+                    <span class="label-body">English</span>
+                </label>
             </div>
 
-                <div class="six columns">
-                    <button class="button-primary button ">Greet </button>
-                </div>
-            
 
+            <div class="four columns">
+                <label class="">
+                    <input type="radio" name="language" class="IsixhosaTypeRadio" value="Isixhosa">
+                    <span class="label-body">Isixhosa</span>
+                </label>
             </div>
-            <div class="row">
-                <div class="twelve columns">
-                    <span class="writer">{{person}}</span>
-                </div>
+
+            <div class="four columns">
+                <label class="">
+                    <input type="radio" name="language" class="AfrikaansTypeRadio" value="Afrikaans">
+                    <span class="label-body">Afrikaans</span>
+                </label>
             </div>
-    </form>
+        </div>
+
+{{!-- 
+        <div class="six columns">
+           <a href="/reset"> <button class="button reset button-primary">Reset </button></a>
+        </div> --}}
+
+        <div class="twelve columns">
+            <button class="button-primary button ">Greet </button>
+        </div>
+
+
+</div>
+<div class="row">
+    <div class="twelve columns">
+        <span class="writer">{{person}}</span>
+    </div>
+</div>
+</form>
+
+
+    <div class="row">
+        <div class="twelve columns">
+           <a href="/reset"> <button class="button reset button-primary">Reset </button></a>
+        </div>
+    </div>
 
     <hr>
-     <div class="row">
-
-          <form action="/greeted" method="GET">
+    <div class="row">
+        <form action="/greeted" method="GET">
             <button class="button-primary" type="submit" name="button">Show Users Greeted</button>
         </form>
     </div>
     <hr>
 
-    <form  class="" action="/counter/:username" method="get">
+    <form class="" action="/counter/:username" method="get">
         <div class="row">
             <div class="six columns counter">
                 <span class="counter">Counter:</span>
@@ -74,8 +80,8 @@
         </div>
     </form>
     <hr>
-    
-   
+
+
 
     <!--div class="row">
         <div class="twelve columns">

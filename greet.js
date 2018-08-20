@@ -72,6 +72,7 @@ module.exports = function(pool)
 
     async function resetDB(){
         let clearDB = await pool.query("DELETE from users");
+        console.log(clearDB.rows)
         return clearDB;
     }
 

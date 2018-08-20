@@ -99,22 +99,22 @@ app.get("/greeted", async function (req, res) {
 app.get("/counter/:username", async function (req, res) {
     try {
         let {username} = req.params;
-       let user =  await greetUser.returnGreetedUser(username);
-
-       console.log(user);
-
-        res.render("counter", user);
+        let user =  await greetUser.returnGreetedUser(username);
+        console.log(user);
+        res.render("counter", {user});
     }
-    catch(error){
-       // res.redirect("/");
+    catch(error)
+    {
+       res.redirect("/");
     }
 });
 
 
 //This Route should delete the users in the database ....
-app.get("/", async function(req,res){
+app.get("/reset", async function(req,res){
     try{
         let deleteUsers = await greetUser.deleteDB();
+        res.redirect("/");
     }
     catch(error){
         res.redirect("/");
