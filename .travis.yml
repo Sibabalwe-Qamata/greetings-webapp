@@ -4,7 +4,7 @@ node_js:
   - "8.9.4"
 
 env:
-  - DATABASE_URL=postgresql://postgres@localhost:5432/sibaDB
+  - DATABASE_URL=postgresql://postgres@localhost:5432/siba_db
 
 before_script:
   - psql -c 'create database siba_db;' -U postgres
