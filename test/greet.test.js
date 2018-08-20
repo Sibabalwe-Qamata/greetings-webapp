@@ -38,5 +38,45 @@ describe('The Greeting WebApp Database Unit Tests', async function()
       assert.equal(await greetings.greet("Siba","Afrikaans" ),'Hallo, Siba');
  });
 
+ it('It should Return the number of users that exists in the database.',
+ async function() 
+{
+    let greetings = await greetingPerson(pool);
+    await greetings.greet("Siba","Afrikaans" )
+    await greetings.greet("Siphe","Isixhosa" )
+    assert.equal(await greetings.counter(),2);
+});
+
+it('It should Return the number of users that exists in the database (i.e Siba, Siphe, Siphelo).',
+async function() 
+{
+   let greetings = await greetingPerson(pool);
+   await greetings.greet("Siba","Afrikaans" )
+   await greetings.greet("Siphe","Isixhosa" )
+   await greetings.greet("Siphelo","English" )
+   assert.equal(await greetings.counter(),3);
+});
+
+
+
+it('It should return all the users that exists in the database.',
+async function() 
+{
+   let greetings = await greetingPerson(pool);
+   await greetings.greet("Siba","Afrikaans" )
+   await greetings.greet("Siphe","Isixhosa" )
+   await greetings.greet("Siphelo","English" )
+
+   assert.equal(await greetings.returnUsers(),[{"counter": 1,"id": 109,"name": "Siba"},{"counter": 1,"id": 110,"name": "Siphe"}]
+);
+});
+it('It should Return the user that exists in the database (i.e Siba).',
+async function() 
+{
+   let greetings = await greetingPerson(pool);
+   await greetings.greet("Siba","Afrikaans" )
+  
+   assert.equal(await greetings.returnGreetedUser("Siba"),"Siba");
+});
 
   });
