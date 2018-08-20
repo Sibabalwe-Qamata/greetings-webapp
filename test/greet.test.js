@@ -4,10 +4,21 @@ let assert = require('assert');
 
 let greetingPerson = require('../greet.js');
 
+const pg = require("pg");
+const Pool = pg.Pool;
 
-describe('The Greet function', function() 
+const connectionString = process.env.DATABASE_URL || 'postgresql://localhost:5432/usersDB';
+
+const pool = new Pool({
+    connectionString
+});
+
+describe('The Greeting WebApp Database Unit Tests', function() 
 {
-  
+      beforeEach(async function(){
+        await pool.query("delete from users;");
+    });
+
      it('It should Greet the user(Siphe) with the proper language and name (i.e Molo, Siphe)',
     function() {
       var greetings = await greetingPerson({});
@@ -18,40 +29,5 @@ describe('The Greet function', function()
       assert.equal(greetings.doGreet(),'Molo, Siphe');
   
      });
-
-     it('It should Greet the user(Siphelo) with the proper language and name (i.e  Hallo,Siphelo)',
-    function() {
-      let greetings =  greetingPerson({});
-      assert.equal(await greetings.greet("Siphelo","Afrikaans"),'Hallo, Siphelo');
-     });
-
-     it('It should Increment the counter, if Three users were greeted ',
-    function() {
-      var greetings = greetingPerson({});
-
-      greetings.setname("Siba");
-      greetings.set_language("English");
-
-      greetings.setname("Siphe");
-      greetings.set_language("Isixhosa");
-
-      greetings.setname("Siphelo");
-      greetings.set_language("Afrikaans");
-
-      assert.equal(greetings.counter(),0);
-     
-     });
-
-     it('It should not Increment the counter, since only One User is greeted in three different languages',
-     function() {
-       var greetings = greetingPerson({});
- 
-       greetings.setname("Siba");
-       greetings.set_language("English");
-        console.log(greetings.counter());
-       assert.equal(greetings.counter(),1);
-      
-      });
-
 
   });
