@@ -70,6 +70,10 @@ module.exports = function(pool)
         return result.rowCount;
     }
 
+    async function resetDB(){
+        let clearDB = await pool.query("DELETE from users");
+        return clearDB;
+    }
 
     return {
        
@@ -77,6 +81,7 @@ module.exports = function(pool)
         counter : getCounter,
         getGreetedUsersObj: getUserList,
         getUserArrayList: getUserArray,
+        deleteDB, resetDB,
 
         returnUsers: allUsers,
         returnGreetedUsers: getUserGreeted
