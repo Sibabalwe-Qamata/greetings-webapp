@@ -67,7 +67,7 @@ module.exports = function(pool)
 
     async function getUserGreeted(name){
         let result = await pool.query('SELECT * FROM users WHERE name = $1', [name]);
-        return result.rowCount;
+        return result.rows;
     }
 
     async function resetDB(){
@@ -81,7 +81,7 @@ module.exports = function(pool)
         counter : getCounter,
         getGreetedUsersObj: getUserList,
         getUserArrayList: getUserArray,
-        deleteDB, resetDB,
+        deleteDB :resetDB,
 
         returnUsers: allUsers,
         returnGreetedUsers: getUserGreeted
