@@ -84,7 +84,7 @@ module.exports = function(pool)
         deleteDB :resetDB,
 
         returnUsers: allUsers,
-        returnGreetedUsers: getUserGreeted
+        returnGreetedUser: getUserGreeted
     }
 
 }

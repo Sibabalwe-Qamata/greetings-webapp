@@ -52,10 +52,9 @@ const greetUser = Greet(pool);
 
 
 app.get('/', async function (req, res) {
-    let greetedPeople = await greetUser.counter();
-    res.render('home', {
-        greetedPeople
-    })
+
+    let Counter = await greetUser.counter();
+    res.render('home', {Counter})
 });
 
 
@@ -88,13 +87,7 @@ app.get("/greeted", async function (req, res) {
 
     try {
         let greetedUsers = await greetUser.returnUsers();
-
-        //console.log(greetedPeople);
-        console.log("From the Database", greetedUsers);
-        res.render("records", {
-            greetedUsers
-        });
-
+        res.render("records", {greetedUsers});
     }
     catch(error){
         res.redirect("/");
@@ -105,14 +98,20 @@ app.get("/greeted", async function (req, res) {
 
 app.get("/counter/:username", async function (req, res) {
     try {
-       
+        let {username} = req.params;
+       let user =  await greetUser.returnGreetedUser(username);
 
+       console.log(user);
+
+        res.render("counter", user);
     }
     catch(error){
-        res.redirect("/");
+       // res.redirect("/");
     }
 });
 
+
+//This Route should delete the users in the database ....
 app.get("/", async function(req,res){
     try{
         let deleteUsers = await greetUser.deleteDB();
