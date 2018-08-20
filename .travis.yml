@@ -6,11 +6,14 @@ node_js:
 env:
   - DATABASE_URL=postgresql://postgres@localhost:5432/sibaDB
 
+services:
+  - postgresql
+
 before_script:
   - psql -c 'create database sibaDB;' -U postgres
   - psql -U postgres -d sibaDB -a -f tables.sql
 
-addons:
-    apt:
-    packages:
-    - postgresql-server-dev-9.2
+# addons:
+#     apt:
+#     packages:
+#     - postgresql-server-dev-9.2
