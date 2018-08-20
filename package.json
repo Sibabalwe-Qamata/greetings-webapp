@@ -25,5 +25,8 @@
     "pg-promise": "^8.4.5",
     "mysql": "^2.5.3",
     "pg": "^7.4.3"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0"
   }
 }
