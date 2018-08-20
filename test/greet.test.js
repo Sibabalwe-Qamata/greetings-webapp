@@ -15,7 +15,7 @@ const pool = new Pool({
 
 describe('The Greeting WebApp Database Unit Tests', async function() 
 {
-    beforeEach(async function(){await pool.query("delete from users;");});
+    beforeEach(async function(){ await pool.query("delete from users;");});
 
      it('It should Greet the user(Siphe) with the proper language and name (i.e Molo, Siphe)',
        async function() 
