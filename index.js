@@ -53,8 +53,13 @@ const greetUser = Greet(pool);
 
 app.get('/', async function (req, res) {
 
-    let Counter = await greetUser.counter();
+    try{
+        let Counter = await greetUser.counter();
     res.render('home', {Counter})
+    }
+    catch(error){
+        res.redirect("/");
+    }
 });
 
 
