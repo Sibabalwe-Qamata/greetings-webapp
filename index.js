@@ -58,7 +58,7 @@ app.get('/', async function (req, res) {
     res.render('home', {Counter})
     }
     catch(error){
-        res.redirect("/");
+
     }
 });
 
