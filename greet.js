@@ -8,7 +8,7 @@ module.exports = function(pool)
     {
             if ( lang === undefined || user === undefined)
             {
-                PersonNameError = "Oops you have to Enter a Name & Choose a Language!";
+                PersonNameError = "Please enter a Name & Choose a Language!";
                 return PersonNameError;
             }
                
