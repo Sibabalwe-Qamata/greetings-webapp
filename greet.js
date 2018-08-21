@@ -3,15 +3,7 @@
 module.exports = function(pool) 
 {
     let PersonName;
-    let PersonNameError;
-
-    let counter = 0;
-
-    let userArray = [];
-
-  
-    let UserObject = {};
-    
+    let PersonNameError;    
    async function greetUser(user, lang)
     {
             if ( lang === undefined || user === undefined)
@@ -19,9 +11,7 @@ module.exports = function(pool)
                 PersonNameError = "Oops you have to Enter a Name & Choose a Language!";
                 return PersonNameError;
             }
-        
-                userArray.push(user);
-                let userCounter = userArray.length;
+               
                 let Usersname = user.toLowerCase();
                 PersonName = Usersname.replace(/^.{1}/g, Usersname[0].toUpperCase());
                 // the data to the Database ....
@@ -34,9 +24,6 @@ module.exports = function(pool)
                 
                 await pool.query('UPDATE users SET counter = counter + 1 WHERE name=$1',[PersonName]);
                   
-
-                
-
                 if(lang === "Isixhosa" && user !== undefined){return "Molo, "+ PersonName;}
 
                 else if(lang === "Afrikaans" && user !== undefined){ return "Hallo, "+ PersonName; }
@@ -45,17 +32,10 @@ module.exports = function(pool)
              
         }
 
-    function getUserArray () {return userArray;}
-
-    function getUserList () {
-        UserObject = getUserArray();
-        return UserObject;
-    }
-
     async function getCounter()
     {
         let result = await pool.query('SELECT id FROM users');
-        console.log(result.rowCount);
+        //console.log(result.rowCount);
         return result.rowCount;
 
     }
@@ -79,9 +59,7 @@ module.exports = function(pool)
     return {
        
         greet : greetUser,
-        counter : getCounter,
-        getGreetedUsersObj: getUserList,
-        getUserArrayList: getUserArray,
+        counter : getCounter,        
         deleteDB :resetDB,
 
         returnUsers: allUsers,
