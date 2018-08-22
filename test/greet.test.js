@@ -49,7 +49,7 @@ describe("The Greeting WebApp Database Unit Tests", async function() {
     assert.equal(await greetings.counter(), 3);
   });
 
-  it("It should return all the users that .", async function() {
+  it("It should return a greeting message and the number of times a user has been greeted.", async function() {
     let greetings = await greetingPerson(pool);
     await greetings.greet("Siba", "Afrikaans");
     await greetings.greet("Siba", "Isixhosa");
@@ -59,7 +59,7 @@ describe("The Greeting WebApp Database Unit Tests", async function() {
   });
 
 
-  it("It should return all the users that .", async function() {
+  it("It should return a greeting message and the number of times a user has been greeted.", async function() {
     let greetings = await greetingPerson(pool);
     await greetings.greet("Sibabalwe", "Afrikaans");
     await greetings.greet("Sibabalwe", "Isixhosa");
