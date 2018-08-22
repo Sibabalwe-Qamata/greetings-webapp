@@ -34,20 +34,27 @@ module.exports = function(pool)
 
     async function getCounter()
     {
-        let result = await pool.query('SELECT id FROM users');
-        //console.log(result.rowCount);
-        return result.rowCount;
+        let counter = await pool.query('SELECT id FROM users');
+        return counter.rowCount;
 
     }
     async function allUsers(){
         let users = await pool.query('SELECT * from users');
-        //console.log(users);
         return users.rows;
     }
 
     async function getUserGreeted(name){
         let result = await pool.query('SELECT * FROM users WHERE name = $1', [name]);
-        return result.rows;
+
+        if(result.rowCount < 0)
+        {
+            return "User does not exist in the database";
+        }
+        else{
+            let count = result.rows[0].counter;
+            return `Hello, ${name} has been greeted  ${count} times.`;
+        }
+      
     }
 
     async function resetDB(){
